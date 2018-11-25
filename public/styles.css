@@ -1,0 +1,21 @@
+.half-width-code {
+    min-width: 50% !important;
+    margin: 0 10px !important;
+}
+
+.language-javascript {
+    font-size: 2em !important;
+}
+
+.smallerCode.language-javascript {
+    font-size: 1.5em !important;
+}
+
+.displayFlex {
+    display: flex;
+}
+
+.twitter-tweet {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
