@@ -5,13 +5,20 @@
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "spectacle-scripts": "2.0.1"
+    "spectacle-scripts": "2.0.1",
+    "spectacle-renderer": "^0.0.3"
+  },
+  "devDependencies": {
+    "surge": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && surge -p .",
+    "surge": "surge -p ./build",
+    "export": "spectacle-renderer --delay 3000"
   },
   "eslintConfig": {
     "extends": "react-app"

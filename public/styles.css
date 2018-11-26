@@ -5,6 +5,7 @@
 
 .language-javascript {
     font-size: 2em !important;
+    width: 100%;
 }
 
 .smallerCode.language-javascript {
@@ -15,7 +16,36 @@
     display: flex;
 }
 
+.alignCenter {
+    align-items: center;
+}
+
+.justifyCenter {
+    justify-content: center;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
 .twitter-tweet {
     margin-left: auto !important;
     margin-right: auto !important;
+}
+
+.pragma-logo {
+    margin: 0 !important;
+    margin-left: 10px !important;
+    margin-top: 10px !important;
+}
+
+.fragment + .fragment {
+    margin-top: 20px;
+}
+
+.ng-runner-link {
+}
+
+.testing-library-code {
+    margin-top: 20px;
 }

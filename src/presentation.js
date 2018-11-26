@@ -1,9 +1,10 @@
 // Import React
 import React from 'react';
 // Import Spectacle Core tags
-import { Appear, CodePane, Deck, Heading, List, ListItem, Slide, Text, Code, Image, Link } from 'spectacle';
+import { Appear, Code, CodePane, Deck, Heading, Image, Link, Slide, Text } from 'spectacle';
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
+import styled from 'react-emotion';
 
 // Require CSS
 require('normalize.css');
@@ -106,7 +107,8 @@ const currentCode = `it('should filter list of TODO items according to text inpu
   component.searchTodoItemsWithText('test');
   
   // then
-  expect(component.displayedTodoItems()).toEqual(['Use test driven development', 'Write the test']);
+  expect(component.displayedTodoItems())
+    .toEqual(['Use test driven development', 'Write the test']);
 });
 `;
 
@@ -288,6 +290,17 @@ const angularCode = `it('should be invalid when application name contains specia
 });
 `;
 
+
+const MyHeading = styled(Heading)`
+  margin-bottom: 50px;
+`;
+
+const MySlide = styled(Slide)`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
 export default class Presentation extends React.Component {
   render() {
     return (
@@ -295,428 +308,435 @@ export default class Presentation extends React.Component {
         transition={['zoom', 'slide']}
         transitionDuration={500}
         theme={theme}
-        contentWidth={'1200px'}
+        contentWidth={1280}
+        progress={'bar'}
       >
         <Slide transition={['slide']} bgColor="primary" size={2} fit bold>
           <Heading size={1} caps lineHeight={1} textColor="secondary">
             Testing Front-End Applications
           </Heading>
-          <Text margin="40px 0 0" textColor="quaternary">
+          <Text margin="40px 0 40px" textColor="quaternary">
             Jakub Janczyk
           </Text>
+
+          <div className={'displayFlex alignCenter'}>
+            <Image src={'front-end-connect.png'} margin={'auto'}  textAlign="center"  className={'displayFlex'} />
+          </div>
         </Slide>
 
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading caps textColor="secondary">
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading caps size={3} textColor="secondary">
             About me
-          </Heading>
-          <Appear><Text textColor="quaternary" textAlign="left">Living and Working in Warsaw</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Developer @ Pragmatists</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Software Craftsmanship follower & TDD enthusiast</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">3000+ Front-end tests in last 1.5 year</Text></Appear>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+          </MyHeading>
+          <Appear><Text textColor="quaternary" textAlign="center">Living and Working in Warsaw</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">
+            <div className={'displayFlex alignCenter justifyCenter'}>
+              Developer @
+              <Image src={'pragma-logo.png'} height={35} margin={0} className={'pragma-logo'} />
+            </div>
+          </Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Clean Code & TDD enthusiast</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">3000+ Front-end tests in last 1.5 year</Text></Appear>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="secondary" caps>
             Why am I testing?
           </Heading>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             Confidence
-          </Heading>
-          <List textColor="quaternary">
-            <ListItem>Working application</ListItem>
-            <ListItem>Refactoring</ListItem>
-            <ListItem>New Features</ListItem>
-            <ListItem>Inside a team</ListItem>
-          </List>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+          </MyHeading>
+          <Appear><Text textColor="quaternary" textAlign="center">In working application</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">When doing refactoring</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">When adding new features</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Within a team</Text></Appear>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
             Faster Development
           </Heading>
-        </Slide>
+        </MySlide>
 
 
-        <Slide transition={['slide']} bgColor="primary">
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="secondary" caps>
             Characteristics of a good test
           </Heading>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             Clean and Readable
-          </Heading>
+          </MyHeading>
           <Text size={6} textColor="quaternary">
             We read code more often than we write it
           </Text>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             Well Structured
-          </Heading>
+          </MyHeading>
           <Appear>
             <div><CodePane lang={'javascript'} source={structureCode} /></div>
           </Appear>
-        </Slide>
-        {/*<Slide transition={['slide']} bgColor="primary">*/}
+        </MySlide>
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
         {/*<Heading size={3} textColor="tertiary" caps>*/}
         {/*One assertion per test*/}
         {/*</Heading>*/}
-        {/*</Slide>*/}
-        {/*<Slide transition={['slide']} bgColor="primary">*/}
-          {/*<Heading size={3} textColor="tertiary" caps>*/}
-            {/*Stable*/}
-          {/*</Heading>*/}
-        {/*</Slide>*/}
+        {/*</MySlide>*/}
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+        {/*<Heading size={3} textColor="tertiary" caps>*/}
+        {/*Stable*/}
+        {/*</Heading>*/}
+        {/*</MySlide>*/}
 
-        <Slide transition={['slide']} bgColor="primary">
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="secondary" caps>
             Test smells
           </Heading>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
             Manual Testing
           </Heading>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
             In pursuit of 100% coverage
           </Heading>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             Testing implementation details
-          </Heading>
+          </MyHeading>
           <Appear>
             <div><CodePane lang={'javascript'} source={implementationDetailsCode} /></div>
           </Appear>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
             Avoid rewriting tests when implementation changed
           </Heading>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           {/*<video src={'collapsing_shelves.webm'} loop={true} autoPlay={true} style={{height: '70vh'}} />*/}
-          <video src={'jenga.mp4'} loop={true} autoPlay={true} style={{height: '70vh'}} />
+          <video src={'jenga.mp4'} loop={true} autoPlay={true} style={{ height: '70vh' }} />
           {/*<Image src={'domino.gif'} loop={true} autoPlay={true} style={{height: '70vh'}} />*/}
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <Image src={'tweet.png'} />
-        </Slide>
+        </MySlide>
 
-        <Slide transition={['slide']} bgColor="primary">
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="secondary" caps>
             TDD
           </Heading>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             TDD cycle
-          </Heading>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+          </MyHeading>
+          <Image src={'tdd.png'} height={400} />
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             TDD Advantages
-          </Heading>
+          </MyHeading>
           <Appear><Text textColor="quaternary" textAlign="left">Confidence</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="left">Code Coverage</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="left">Design Tool - Test as a user of
             application</Text></Appear>
-        </Slide>
+        </MySlide>
 
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="secondary" caps>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="secondary" caps>
             Testing boundaries
-          </Heading>
+          </MyHeading>
           <Appear><Text textColor="quaternary" textAlign="left">Unit</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="left">Integration</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="left">Functional</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="left">End-to-end</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="left">...</Text></Appear>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             Aim for integration tests
-          </Heading>
-
-          <Appear>
-            <div>
-              <Text textColor="quaternary" textAlign="left">Integration on different level</Text>
-              <List textColor="quaternary">
-                <ListItem>Application</ListItem>
-                <ListItem>Page</ListItem>
-                <ListItem>Several Components</ListItem>
-              </List>
-            </div>
-          </Appear>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+          </MyHeading>
+          <Appear><Text textColor="quaternary" textAlign="left">On level of an application</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="left">On level of a page</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="left">On level of several components</Text></Appear>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
             Test from a perspective of a user
           </Heading>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <CodePane lang={'javascript'} source={integrationCode} />
-        </Slide>
-        {/*<Slide transition={['slide']} bgColor="primary">*/}
-          {/*<CodePane lang={'javascript'} source={nonIntegrationCode} />*/}
-        {/*</Slide>*/}
+        </MySlide>
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+        {/*<CodePane lang={'javascript'} source={nonIntegrationCode} />*/}
+        {/*</MySlide>*/}
 
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             Not only integration tests
-          </Heading>
-          <Appear><Text textColor="quaternary" textAlign="left">Most of tests - integration</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Unit tests still present - e.g. corner
+          </MyHeading>
+          <Appear><Text textColor="quaternary" textAlign="center">Most of tests - integration</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Unit tests still present - e.g. corner
             cases</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Write high-level integration tests - go down with unit
+          <Appear><Text textColor="quaternary" textAlign="center">Write high-level integration tests - go down with unit
             tests to implement the feature</Text></Appear>
-        </Slide>
+        </MySlide>
 
-        <Slide transition={['slide']} bgColor="primary">
-          <video src={'integration.mp4'} autoPlay={true} loop={true} style={{height: '70vh'}} />
-        </Slide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <video src={'integration.mp4'} autoPlay={true} loop={true} style={{ height: '70vh' }} />
+        </MySlide>
 
-        {/*<Slide transition={['slide']} bgColor="primary">*/}
-          {/*<Heading size={3} textColor="secondary" caps>*/}
-            {/*Mocking*/}
-          {/*</Heading>*/}
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+        {/*<Heading size={3} textColor="secondary" caps>*/}
+        {/*Mocking*/}
+        {/*</Heading>*/}
 
-          {/*<Appear><Text textColor="quaternary" textAlign="left">Avoid when possible</Text></Appear>*/}
-          {/*<Appear><Text textColor="quaternary" textAlign="left">Few exceptions, e.g. HTTP requests</Text></Appear>*/}
-          {/*<Appear><Text textColor="quaternary" textAlign="left">3rd party - Try to interact with external components</Text></Appear>*/}
-        {/*</Slide>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="left">Avoid when possible</Text></Appear>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="left">Few exceptions, e.g. HTTP requests</Text></Appear>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="left">3rd party - Try to interact with external components</Text></Appear>*/}
+        {/*</MySlide>*/}
 
-        {/*<Slide transition={['slide']} bgColor="primary">*/}
-          {/*<Heading size={3} textColor="secondary" caps>*/}
-            {/*Downside - speed of tests*/}
-          {/*</Heading>*/}
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+        {/*<Heading size={3} textColor="secondary" caps>*/}
+        {/*Downside - speed of tests*/}
+        {/*</Heading>*/}
 
-          {/*<Appear><Text textColor="quaternary" textAlign="left">I prefer confidence over few saved seconds.</Text></Appear>*/}
-          {/*<Appear><Text textColor="quaternary" textAlign="left">In one of the projects - 2000 tests were running in about a minute</Text></Appear>*/}
-        {/*</Slide>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="left">I prefer confidence over few saved seconds.</Text></Appear>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="left">In one of the projects - 2000 tests were running in about a minute</Text></Appear>*/}
+        {/*</MySlide>*/}
 
-        {/*<Slide transition={['slide']} bgColor="primary">*/}
-          {/*<Heading size={3} textColor="secondary" caps>*/}
-            {/*FE Testing challenges*/}
-          {/*</Heading>*/}
-        {/*</Slide>*/}
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+        {/*<Heading size={3} textColor="secondary" caps>*/}
+        {/*FE Testing challenges*/}
+        {/*</Heading>*/}
+        {/*</MySlide>*/}
 
-        {/*<Slide transition={['slide']} bgColor="primary">*/}
-          {/*<Heading size={3} textColor="tertiary" caps>*/}
-            {/*DOM Integration*/}
-          {/*</Heading>*/}
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+        {/*<Heading size={3} textColor="tertiary" caps>*/}
+        {/*DOM Integration*/}
+        {/*</Heading>*/}
 
-          {/*<Appear><Text textColor="quaternary" textAlign="left">JSDOM - FTW!</Text></Appear>*/}
-          {/*<Appear><Text textColor="quaternary" textAlign="left">Lacking support for elements sizing :(</Text></Appear>*/}
-          {/*<Appear><Text textColor="quaternary" textAlign="left">Possible with mocking - one of the*/}
-            {/*exceptions</Text></Appear>*/}
-          {/*<Appear><Text textColor="quaternary" textAlign="left">Alternative - extract code operating on DOM to function*/}
-            {/*and test it</Text></Appear>*/}
-        {/*</Slide>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="left">JSDOM - FTW!</Text></Appear>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="left">Lacking support for elements sizing :(</Text></Appear>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="left">Possible with mocking - one of the*/}
+        {/*exceptions</Text></Appear>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="left">Alternative - extract code operating on DOM to function*/}
+        {/*and test it</Text></Appear>*/}
+        {/*</MySlide>*/}
 
-        {/*<Slide transition={['slide']} bgColor="primary">*/}
-          {/*<Heading size={3} textColor="tertiary" caps>*/}
-            {/*DOM Integration - Example*/}
-          {/*</Heading>*/}
-        {/*</Slide>*/}
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+        {/*<Heading size={3} textColor="tertiary" caps>*/}
+        {/*DOM Integration - Example*/}
+        {/*</Heading>*/}
+        {/*</MySlide>*/}
 
-        {/*<Slide transition={['slide']} bgColor="primary">*/}
-          {/*<Heading size={3} textColor="tertiary" caps>*/}
-            {/*Asynchronous environment*/}
-          {/*</Heading>*/}
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+        {/*<Heading size={3} textColor="tertiary" caps>*/}
+        {/*Asynchronous environment*/}
+        {/*</Heading>*/}
 
-          {/*<Appear><Text textColor="quaternary" textAlign="left">Everything is asynchronous: requests, callbacks, event*/}
-            {/*listeners, timers...</Text></Appear>*/}
-          {/*<Appear><Text textColor="quaternary" textAlign="left">Solution: JEST + async/await</Text></Appear>*/}
-          {/*<Appear>*/}
-            {/*<div><CodePane lang={'javascript'} source={asynchronousCode} /></div>*/}
-          {/*</Appear>*/}
-        {/*</Slide>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="left">Everything is asynchronous: requests, callbacks, event*/}
+        {/*listeners, timers...</Text></Appear>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="left">Solution: JEST + async/await</Text></Appear>*/}
+        {/*<Appear>*/}
+        {/*<div><CodePane lang={'javascript'} source={asynchronousCode} /></div>*/}
+        {/*</Appear>*/}
+        {/*</MySlide>*/}
 
 
-        <Slide transition={['slide']} bgColor="primary">
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="secondary" caps>
             Our road to better React + Enzyme tests
           </Heading>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
             Our test currently
           </Heading>
           <Appear>
-            <div><CodePane lang={'javascript'} source={currentCode} /></div>
+            <div className={'displayFlex fullWidth'}><CodePane lang={'javascript'} source={currentCode} /></div>
           </Appear>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
             (Almost) all our mistakes
           </Heading>
-        </Slide>
+        </MySlide>
 
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             Mistake no. 1 - Shallow rendering from Enzyme
-          </Heading>
+          </MyHeading>
 
-          <Appear><Text textColor="quaternary" textAlign="left">Three ways to render component - shallow, full or static
-            render</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Shallow does not render nested
-            components</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Testing implementation details!</Text></Appear>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+          <Appear><Text textColor="quaternary" textAlign="center">Ways to render a component - shallow, full or static</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Shallow does not render nested components</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Testing implementation details!</Text></Appear>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <CodePane lang={'javascript'} source={shallowFirstCode} />
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <CodePane lang={'javascript'} source={shallowWrongCode} />
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <CodePane lang={'javascript'} className={'smallerCode'}  source={shallowWrongCode} />
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             <Code textSize={'1em'} textColor="tertiary">.shallow()</Code> to the rescue?
-          </Heading>
+          </MyHeading>
 
-          <Appear><Text textColor="quaternary" textAlign="left">DON'T!</Text></Appear>
           <Appear>
-          <div><CodePane lang={'javascript'} source={'component.shallow().shallow().shallow().shallow().shallow().shallow().shallow();'} /></div>
-        </Appear>
+            <div className={'displayFlex fullWidth'}><CodePane lang={'javascript'}
+                           source={'component.shallow().shallow().shallow().shallow().shallow().shallow();'} />
+            </div>
+          </Appear>
           <Appear>
-          <div><CodePane lang={'javascript'} source={'shallowUpTo(Component);'}/> </div>
-        </Appear>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+            <div className={'displayFlex fullWidth'}><CodePane lang={'javascript'} source={'shallowUpTo(Component);'} /></div>
+          </Appear>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
             Always render everything!
           </Heading>
-        </Slide>
+        </MySlide>
 
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
-            Mistake no. 2 - Finding elements by incorrect attributes
-          </Heading>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
+            Mistake no. 2 - Attributes to query element
+          </MyHeading>
 
-          <Appear><Text textColor="quaternary" textAlign="left">Enzyme let's you fins element by Component name or type</Text></Appear>
           <Appear>
             <div><CodePane lang={'javascript'} source={componentNameFindCode} /></div>
           </Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Implementation detail!</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Using id or class name - error prone or impossible - e.g. when using CSS Modules or Styled Components</Text></Appear>
-          <Appear><div><Text textColor="quaternary" textAlign="left">Use actual text, or labels to find element, or if not possible, some custom attribute. We use data-test</Text></div></Appear>
-        </Slide>
+          <Appear><Text textColor="quaternary" textAlign="center">Implementation detail!</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Using id or class name - error prone</Text></Appear>
+          <Appear>
+            <div><Text textColor="quaternary" textAlign="center">Use real texts to find elements, or at least some custom attribute (like data-test)</Text></div>
+          </Appear>
+        </MySlide>
 
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             Mistake no. 3 - Accessing internal state
-          </Heading>
+          </MyHeading>
 
           <Appear>
             <div><CodePane lang={'javascript'} source={implementationDetailsCode} /></div>
           </Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Big no, no!</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">What if we change name or remove a state?</Text></Appear>
-        </Slide>
+          <Appear><Text textColor="quaternary" textAlign="left">What if we change name or remove a
+            state?</Text></Appear>
+        </MySlide>
 
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             Mistake no. 4 - not testing integration with Redux
-          </Heading>
+          </MyHeading>
 
-          <Appear><Text textColor="quaternary" textAlign="left">Testing actions, reducers, selectors, components separately?</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Problem starts when state property name changed - have to change it for all pieces</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Better to test it all at once!</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Applies also in case of Router, Internationalization or other contexts</Text></Appear>
-        </Slide>
+          <Appear><Text textColor="quaternary" textAlign="center">Testing reducers, selectors, components
+            separately?</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">One code change - multiple tests change</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Better to test it all at once!</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Also applicable to Router, I18N or
+            other contexts</Text></Appear>
+        </MySlide>
 
-        <Slide transition={['slide']} bgColor="primary">
+        <MySlide transition={['slide']} bgColor="primary">
           <CodePane lang={'javascript'} source={reduxIntegrationCode} />
-        </Slide>
+        </MySlide>
 
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="secondary" caps>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="secondary" caps>
             Custom Wrappers
-          </Heading>
+          </MyHeading>
 
           <Appear>
-            <div><CodePane lang={'javascript'} source={currentCode} /></div>
+            <div><CodePane className={'smallerCode'} lang={'javascript'} source={currentCode} /></div>
           </Appear>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <CodePane lang={'javascript'} source={currentWithoutWrappersCode} />
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <CodePane lang={'javascript'} source={currentWithoutWrappersExtractedFunctionsCode} />
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <CodePane lang={'javascript'} className={'smallerCode'} source={currentWithoutWrappersExtractedFunctionsCode} />
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <CodePane className={'smallerCode'} lang={'javascript'} source={currentDetailsCode} />
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="secondary" caps>
-           enzyme-custom-wrappers
-          </Heading>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="secondary" caps>
+            enzyme-custom-wrappers
+          </MyHeading>
 
-          <Link href={'https://github.com/jakubjanczyk/enzyme-custom-wrappers'} textColor="tertiary">https://github.com/jakubjanczyk/enzyme-custom-wrappers</Link>
-        </Slide>
+          <Link href={'https://github.com/jakubjanczyk/enzyme-custom-wrappers'}
+                textColor="tertiary">https://github.com/jakubjanczyk/enzyme-custom-wrappers</Link>
+        </MySlide>
 
 
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="secondary" caps>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="secondary" caps>
             React-testing-library
-          </Heading>
-          <Link href={'https://github.com/kentcdodds/react-testing-library'} textColor="tertiary">https://github.com/kentcdodds/react-testing-library</Link>
+          </MyHeading>
+          <Link href={'https://github.com/kentcdodds/react-testing-library'}
+                textColor="tertiary">https://github.com/kentcdodds/react-testing-library</Link>
 
           <Appear>
-            <div><CodePane lang={'javascript'} source={reactTestingLibraryCode} /></div>
+            <div className={'testing-library-code'}><CodePane lang={'javascript'} className={'smallerCode'} source={reactTestingLibraryCode} /></div>
           </Appear>
-        </Slide>
+        </MySlide>
 
-        <Slide transition={['slide']} bgColor="primary">
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="secondary" caps>
             Other Frameworks
           </Heading>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="tertiary" caps>
             Angular
-          </Heading>
+          </MyHeading>
           <Appear>
-            <div>
-              <Text textColor="quaternary" textAlign="left">ng-test-runner</Text>
-              <Link href={'https://github.com/Pragmatists/ng-test-runner'} textColor="tertiary">https://github.com/Pragmatists/ng-test-runner</Link>
+            <div className={'ng-runner-link'}>
+              <Text textColor="quaternary" textAlign="center">ng-test-runner</Text>
+              <Link href={'https://github.com/Pragmatists/ng-test-runner'}
+                    textColor="tertiary">https://github.com/Pragmatists/ng-test-runner</Link>
             </div>
           </Appear>
 
           <Appear>
-            <div><CodePane lang={'javascript'} source={angularCode} /></div>
+            <div><CodePane lang={'javascript'} className={'smallerCode'} source={angularCode} /></div>
           </Appear>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
             Vue
           </Heading>
-        </Slide>
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="secondary" caps>
+        </MySlide>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="secondary" caps>
             dom-testing-library
-          </Heading>
+          </MyHeading>
 
-          <Link href={'https://github.com/kentcdodds/dom-testing-library'} textColor="tertiary">https://github.com/kentcdodds/dom-testing-library</Link>
-        </Slide>
+          <Link href={'https://github.com/kentcdodds/dom-testing-library'}
+                textColor="tertiary">https://github.com/kentcdodds/dom-testing-library</Link>
+        </MySlide>
 
 
-        <Slide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="secondary" caps>
-            Summary - Rules
-          </Heading>
+        <MySlide transition={['slide']} bgColor="primary">
+          <MyHeading size={3} textColor="secondary" caps>
+            Rules
+          </MyHeading>
 
-          <Appear><Text textColor="quaternary" textAlign="left">Use TDD</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Do not test implementation details</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Write integration tests when possible</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Always try to render as much as possible and avoid mocking</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Verify actual HTML output and not some intermediate technologies, like JSX</Text></Appear>
-        </Slide>
+          <Appear><Text textColor="quaternary" textAlign="center">Use TDD</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Do not test implementation details</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Write integration tests when possible</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Always render everything</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Verify actual HTML output</Text></Appear>
+        </MySlide>
       </Deck>
     );
   }
