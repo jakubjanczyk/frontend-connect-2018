@@ -160,13 +160,7 @@ const wrapperForTodosList = (component) => {
 
 const currentWithoutWrappersCode = `it('should filter list of TODO items according to text input', async () => {
   // given
-  const initialItems = [
-    'Use test driven development',
-    'Write the test',
-    'Write the implementation',
-    'Refactor',
-    'Have some coffee'
-  ]
+  const initialItems = [...]
   const component = mount(<TodosPage items={initialItems} />);
   
   // when
@@ -222,8 +216,7 @@ const createStoreForTest = ({initialState, ...}) => {
 }
 `;
 
-const shallowFirstCode = `
-const MyComponent = ({items}) => (
+const shallowFirstCode = `const MyComponent = ({items}) => (
     <div>
         <div>...</div>
         <ul>
@@ -244,8 +237,7 @@ it('should render items', async () => {
 });
 `;
 
-const shallowWrongCode = `
-const Item = ({value}) => (
+const shallowWrongCode = `const Item = ({value}) => (
     <li className="item">{value}</li>
 )
 
@@ -335,8 +327,8 @@ export default class Presentation extends React.Component {
               <Image src={'pragma-logo.png'} height={35} margin={0} className={'pragma-logo'} />
             </div>
           </Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="center">Clean Code & TDD enthusiast</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="center">3000+ Front-end tests in last 1.5 year</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Clean Code & TDD practitioner</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">3000+ Front-end tests in last year</Text></Appear>
         </MySlide>
         <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="secondary" caps>
@@ -354,19 +346,19 @@ export default class Presentation extends React.Component {
         </MySlide>
         <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
-            Faster Development
+            Time saving
           </Heading>
         </MySlide>
 
 
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+          {/*<Heading size={3} textColor="secondary" caps>*/}
+            {/*Characteristics of a good test*/}
+          {/*</Heading>*/}
+        {/*</MySlide>*/}
         <MySlide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="secondary" caps>
-            Characteristics of a good test
-          </Heading>
-        </MySlide>
-        <MySlide transition={['slide']} bgColor="primary">
-          <MyHeading size={3} textColor="tertiary" caps>
-            Clean and Readable
+          <MyHeading size={3} textColor="secondary" caps>
+            Clean and Readable Tests
           </MyHeading>
           <Text size={6} textColor="quaternary">
             We read code more often than we write it
@@ -437,7 +429,7 @@ export default class Presentation extends React.Component {
           <MyHeading size={3} textColor="tertiary" caps>
             TDD cycle
           </MyHeading>
-          <Image src={'tdd.png'} height={400} />
+          <Image src={'tdd_cycle.png'} height={400} />
         </MySlide>
         <MySlide transition={['slide']} bgColor="primary">
           <MyHeading size={3} textColor="tertiary" caps>
@@ -445,8 +437,7 @@ export default class Presentation extends React.Component {
           </MyHeading>
           <Appear><Text textColor="quaternary" textAlign="left">Confidence</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="left">Code Coverage</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Design Tool - Test as a user of
-            application</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="left">Design Tool - Test as a user of an application</Text></Appear>
         </MySlide>
 
         <MySlide transition={['slide']} bgColor="primary">
@@ -463,9 +454,9 @@ export default class Presentation extends React.Component {
           <MyHeading size={3} textColor="tertiary" caps>
             Aim for integration tests
           </MyHeading>
-          <Appear><Text textColor="quaternary" textAlign="left">On level of an application</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">On level of a page</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">On level of several components</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="left">Application level</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="left">Page level</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="left">Multiple components level</Text></Appear>
         </MySlide>
         <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
@@ -479,20 +470,20 @@ export default class Presentation extends React.Component {
         {/*<CodePane lang={'javascript'} source={nonIntegrationCode} />*/}
         {/*</MySlide>*/}
 
-        <MySlide transition={['slide']} bgColor="primary">
-          <MyHeading size={3} textColor="tertiary" caps>
-            Not only integration tests
-          </MyHeading>
-          <Appear><Text textColor="quaternary" textAlign="center">Most of tests - integration</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="center">Unit tests still present - e.g. corner
-            cases</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="center">Write high-level integration tests - go down with unit
-            tests to implement the feature</Text></Appear>
-        </MySlide>
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+          {/*<MyHeading size={3} textColor="tertiary" caps>*/}
+            {/*Not only integration*/}
+          {/*</MyHeading>*/}
+          {/*<Appear><Text textColor="quaternary" textAlign="center">Most of tests - integrations</Text></Appear>*/}
+          {/*<Appear><Text textColor="quaternary" textAlign="center">Unit tests still present - e.g. corner*/}
+            {/*cases</Text></Appear>*/}
+          {/*<Appear><Text textColor="quaternary" textAlign="center">Write high-level integration tests - go down with unit*/}
+            {/*tests to implement the feature</Text></Appear>*/}
+        {/*</MySlide>*/}
 
-        <MySlide transition={['slide']} bgColor="primary">
-          <video src={'integration.mp4'} autoPlay={true} loop={true} style={{ height: '70vh' }} />
-        </MySlide>
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+          {/*<video src={'integration.mp4'} autoPlay={true} loop={true} style={{ height: '70vh' }} />*/}
+        {/*</MySlide>*/}
 
         {/*<MySlide transition={['slide']} bgColor="primary">*/}
         {/*<Heading size={3} textColor="secondary" caps>*/}
@@ -554,7 +545,7 @@ export default class Presentation extends React.Component {
 
         <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="secondary" caps>
-            Our road to better React + Enzyme tests
+            Our road to better React and Enzyme tests
           </Heading>
         </MySlide>
         <MySlide transition={['slide']} bgColor="primary">
@@ -579,6 +570,7 @@ export default class Presentation extends React.Component {
           <Appear><Text textColor="quaternary" textAlign="center">Ways to render a component - shallow, full or static</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="center">Shallow does not render nested components</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="center">Testing implementation details!</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Hard to refactor</Text></Appear>
         </MySlide>
         <MySlide transition={['slide']} bgColor="primary">
           <CodePane lang={'javascript'} source={shallowFirstCode} />
@@ -586,20 +578,20 @@ export default class Presentation extends React.Component {
         <MySlide transition={['slide']} bgColor="primary">
           <CodePane lang={'javascript'} className={'smallerCode'}  source={shallowWrongCode} />
         </MySlide>
-        <MySlide transition={['slide']} bgColor="primary">
-          <MyHeading size={3} textColor="tertiary" caps>
-            <Code textSize={'1em'} textColor="tertiary">.shallow()</Code> to the rescue?
-          </MyHeading>
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+          {/*<MyHeading size={3} textColor="tertiary" caps>*/}
+            {/*<Code textSize={'1em'} textColor="tertiary">.shallow()</Code> to the rescue?*/}
+          {/*</MyHeading>*/}
 
-          <Appear>
-            <div className={'displayFlex fullWidth'}><CodePane lang={'javascript'}
-                           source={'component.shallow().shallow().shallow().shallow().shallow().shallow();'} />
-            </div>
-          </Appear>
-          <Appear>
-            <div className={'displayFlex fullWidth'}><CodePane lang={'javascript'} source={'shallowUpTo(Component);'} /></div>
-          </Appear>
-        </MySlide>
+          {/*<Appear>*/}
+            {/*<div className={'displayFlex fullWidth'}><CodePane lang={'javascript'}*/}
+                           {/*source={'component.shallow().shallow().shallow().shallow().shallow().shallow();'} />*/}
+            {/*</div>*/}
+          {/*</Appear>*/}
+          {/*<Appear>*/}
+            {/*<div className={'displayFlex fullWidth'}><CodePane lang={'javascript'} source={'shallowUpTo(Component);'} /></div>*/}
+          {/*</Appear>*/}
+        {/*</MySlide>*/}
         <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
             Always render everything!
@@ -608,39 +600,37 @@ export default class Presentation extends React.Component {
 
         <MySlide transition={['slide']} bgColor="primary">
           <MyHeading size={3} textColor="tertiary" caps>
-            Mistake no. 2 - Attributes to query element
+            Mistake no. 2 - ways of querying elements
           </MyHeading>
 
           <Appear>
             <div><CodePane lang={'javascript'} source={componentNameFindCode} /></div>
           </Appear>
           <Appear><Text textColor="quaternary" textAlign="center">Implementation detail!</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="center">Using id or class name - error prone</Text></Appear>
           <Appear>
             <div><Text textColor="quaternary" textAlign="center">Use real texts to find elements, or at least some custom attribute (like data-test)</Text></div>
           </Appear>
         </MySlide>
 
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+          {/*<MyHeading size={3} textColor="tertiary" caps>*/}
+            {/*Mistake no. 3 - Accessing internal state*/}
+          {/*</MyHeading>*/}
+
+          {/*<Appear>*/}
+            {/*<div><CodePane lang={'javascript'} source={implementationDetailsCode} /></div>*/}
+          {/*</Appear>*/}
+          {/*<Appear><Text textColor="quaternary" textAlign="left">What if we change name or remove a*/}
+            {/*state?</Text></Appear>*/}
+        {/*</MySlide>*/}
+
         <MySlide transition={['slide']} bgColor="primary">
           <MyHeading size={3} textColor="tertiary" caps>
-            Mistake no. 3 - Accessing internal state
-          </MyHeading>
-
-          <Appear>
-            <div><CodePane lang={'javascript'} source={implementationDetailsCode} /></div>
-          </Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">What if we change name or remove a
-            state?</Text></Appear>
-        </MySlide>
-
-        <MySlide transition={['slide']} bgColor="primary">
-          <MyHeading size={3} textColor="tertiary" caps>
-            Mistake no. 4 - not testing integration with Redux
+            Mistake no. 3 - not testing integration with Redux
           </MyHeading>
 
           <Appear><Text textColor="quaternary" textAlign="center">Testing reducers, selectors, components
             separately?</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="center">One code change - multiple tests change</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="center">Better to test it all at once!</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="center">Also applicable to Router, I18N or
             other contexts</Text></Appear>
@@ -662,9 +652,9 @@ export default class Presentation extends React.Component {
         <MySlide transition={['slide']} bgColor="primary">
           <CodePane lang={'javascript'} source={currentWithoutWrappersCode} />
         </MySlide>
-        <MySlide transition={['slide']} bgColor="primary">
-          <CodePane lang={'javascript'} className={'smallerCode'} source={currentWithoutWrappersExtractedFunctionsCode} />
-        </MySlide>
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+          {/*<CodePane lang={'javascript'} className={'smallerCode'} source={currentWithoutWrappersExtractedFunctionsCode} />*/}
+        {/*</MySlide>*/}
         <MySlide transition={['slide']} bgColor="primary">
           <CodePane className={'smallerCode'} lang={'javascript'} source={currentDetailsCode} />
         </MySlide>
@@ -711,11 +701,11 @@ export default class Presentation extends React.Component {
             <div><CodePane lang={'javascript'} className={'smallerCode'} source={angularCode} /></div>
           </Appear>
         </MySlide>
-        <MySlide transition={['slide']} bgColor="primary">
-          <Heading size={3} textColor="tertiary" caps>
-            Vue
-          </Heading>
-        </MySlide>
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+          {/*<Heading size={3} textColor="tertiary" caps>*/}
+            {/*Vue*/}
+          {/*</Heading>*/}
+        {/*</MySlide>*/}
         <MySlide transition={['slide']} bgColor="primary">
           <MyHeading size={3} textColor="secondary" caps>
             dom-testing-library
@@ -736,6 +726,12 @@ export default class Presentation extends React.Component {
           <Appear><Text textColor="quaternary" textAlign="center">Write integration tests when possible</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="center">Always render everything</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="center">Verify actual HTML output</Text></Appear>
+        </MySlide>
+
+        <MySlide transition={['slide']} bgColor="primary">
+          <Heading size={3} textColor="secondary" caps>
+            Thank You!
+          </Heading>
         </MySlide>
       </Deck>
     );

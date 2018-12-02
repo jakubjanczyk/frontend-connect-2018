@@ -16,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && surge -p .",
+    "deploy": "npm run build && surge -p ./build",
     "surge": "surge -p ./build",
     "export": "spectacle-renderer --delay 3000"
   },
