@@ -1,7 +1,7 @@
 // Import React
 import React from 'react';
 // Import Spectacle Core tags
-import { Appear, Code, CodePane, Deck, Heading, Image, Link, Slide, Text } from 'spectacle';
+import { Appear, CodePane, Deck, Heading, Image, Link, Notes, Slide, Text } from 'spectacle';
 // Import theme
 import createTheme from 'spectacle/lib/themes/default';
 import styled from 'react-emotion';
@@ -80,7 +80,7 @@ const nonIntegrationCode = `it('tests from implementation perspective', () => {
 });
 `;
 
-const asynchronousCode = `it('deals with asynchronous code', async () => {
+const asynchronousCode = `it('deals with asynchronous code', () => {
   await someAction();
   
   // or 
@@ -92,7 +92,7 @@ const asynchronousCode = `it('deals with asynchronous code', async () => {
 });
 `;
 
-const currentCode = `it('should filter list of TODO items according to text input', async () => {
+const currentCode = `it('should filter list of TODO items according to text input', () => {
   // given
   const initialItems = [
     'Use test driven development',
@@ -112,7 +112,7 @@ const currentCode = `it('should filter list of TODO items according to text inpu
 });
 `;
 
-const reactTestingLibraryCode = `it('should filter list of TODO items according to text input', async () => {
+const reactTestingLibraryCode = `it('should filter list of TODO items according to text input', () => {
   // given
   const initialItems = [...]
   const {getByText, getByTestId} = render(<TodosPage items={initialItems} />)
@@ -128,7 +128,7 @@ const reactTestingLibraryCode = `it('should filter list of TODO items according 
 });
 `;
 
-const currentDetailsCode = `it('should filter list of TODO items according to text input', async () => {
+const currentDetailsCode = `it('should filter list of TODO items according to text input', () => {
   // given
   const initialItems = [...]
   const component = mountTodosPage(initialItems);
@@ -140,25 +140,22 @@ const currentDetailsCode = `it('should filter list of TODO items according to te
   expect(component.displayedTodoItems()).toEqual(['Use test driven development', 'Write the test']);
 });
 
-const mountTodosPage = (items) => mountWithCustomWrappers(<TodosPage items={items}/>, wrapperForTodosSearch, wrapperForTodosList);
+const mountTodosPage = (items) => 
+    mountWithCustomWrappers(<TodosPage items={items}/>, wrapperForTodosSearch, wrapperForTodosList);
 
-const wrapperForTodosSearch = (component) => {
-    return {
-        searchTodoItemsWithText: (text) => {
-            component.findByDataTest('search-input').typeText(text);
-            component.findByText('Search').click();
-        }
-        ... // possibly more methods
+const wrapperForTodosSearch = (component) => ({
+    searchTodoItemsWithText: (text) => {
+        component.findByDataTest('search-input').typeText(text);
+        component.findByText('Search').click();
     }
-}
-const wrapperForTodosList = (component) => {
-    return {
-        displayedTodoItems: () => component.findByDataTest('todo-item').map(el => el.text())
-    }
-}
+})
+
+const wrapperForTodosList = (component) => ({
+    displayedTodoItems: () => component.findByDataTest('todo-item').map(el => el.text())
+})
 `;
 
-const currentWithoutWrappersCode = `it('should filter list of TODO items according to text input', async () => {
+const currentWithoutWrappersCode = `it('should filter list of TODO items according to text input', () => {
   // given
   const initialItems = [...]
   const component = mount(<TodosPage items={initialItems} />);
@@ -173,7 +170,7 @@ const currentWithoutWrappersCode = `it('should filter list of TODO items accordi
 });
 `;
 
-const currentWithoutWrappersExtractedFunctionsCode = `it('should filter list of TODO items according to text input', async () => {
+const currentWithoutWrappersExtractedFunctionsCode = `it('should filter list of TODO items according to text input', () => {
   // given
   const initialItems = [
     'Use test driven development',
@@ -198,7 +195,7 @@ const searchTodoItemsWithSearch = (component, text) => {
 }
 `;
 
-const reduxIntegrationCode = `it('tests with redux integration', async () => {
+const reduxIntegrationCode = `it('tests with redux integration', () => {
   // given
   const initialState = ...
   const store = createStoreForTest({initialState});
@@ -225,7 +222,7 @@ const shallowFirstCode = `const MyComponent = ({items}) => (
     </div>
 )
 
-it('should render items', async () => {
+it('should render items', () => {
   // given
   const items = [1, 2, 3, 4]
   
@@ -250,7 +247,7 @@ const MyComponent = ({items}) => (
     </div>
 )
 
-it('should render items', async () => {
+it('should render items', () => {
   // given
   const items = [1, 2, 3, 4]
   
@@ -312,7 +309,7 @@ export default class Presentation extends React.Component {
           </Text>
 
           <div className={'displayFlex alignCenter'}>
-            <Image src={'front-end-connect.png'} margin={'auto'}  textAlign="center"  className={'displayFlex'} />
+            <Image src={'front-end-connect.png'} margin={'auto'} textAlign="center" className={'displayFlex'} />
           </div>
         </Slide>
 
@@ -352,26 +349,26 @@ export default class Presentation extends React.Component {
 
 
         {/*<MySlide transition={['slide']} bgColor="primary">*/}
-          {/*<Heading size={3} textColor="secondary" caps>*/}
-            {/*Characteristics of a good test*/}
-          {/*</Heading>*/}
+        {/*<Heading size={3} textColor="secondary" caps>*/}
+        {/*Characteristics of a good test*/}
+        {/*</Heading>*/}
         {/*</MySlide>*/}
-        <MySlide transition={['slide']} bgColor="primary">
-          <MyHeading size={3} textColor="secondary" caps>
-            Clean and Readable Tests
-          </MyHeading>
-          <Text size={6} textColor="quaternary">
-            We read code more often than we write it
-          </Text>
-        </MySlide>
-        <MySlide transition={['slide']} bgColor="primary">
-          <MyHeading size={3} textColor="tertiary" caps>
-            Well Structured
-          </MyHeading>
-          <Appear>
-            <div><CodePane lang={'javascript'} source={structureCode} /></div>
-          </Appear>
-        </MySlide>
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+        {/*<MyHeading size={3} textColor="secondary" caps>*/}
+        {/*Clean and Readable Tests*/}
+        {/*</MyHeading>*/}
+        {/*<Text size={6} textColor="quaternary">*/}
+        {/*We read code more often than we write it*/}
+        {/*</Text>*/}
+        {/*</MySlide>*/}
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+        {/*<MyHeading size={3} textColor="tertiary" caps>*/}
+        {/*Well Structured*/}
+        {/*</MyHeading>*/}
+        {/*<Appear>*/}
+        {/*<div><CodePane lang={'javascript'} source={structureCode} /></div>*/}
+        {/*</Appear>*/}
+        {/*</MySlide>*/}
         {/*<MySlide transition={['slide']} bgColor="primary">*/}
         {/*<Heading size={3} textColor="tertiary" caps>*/}
         {/*One assertion per test*/}
@@ -410,11 +407,18 @@ export default class Presentation extends React.Component {
           <Heading size={3} textColor="tertiary" caps>
             Avoid rewriting tests when implementation changed
           </Heading>
+          <Notes>
+            Unless you change a requirement, you should not be touching your tests while refactoring (maybe only to make
+            it cleaner). It’s a recepie for a disaster in a long run
+          </Notes>
         </MySlide>
         <MySlide transition={['slide']} bgColor="primary">
           {/*<video src={'collapsing_shelves.webm'} loop={true} autoPlay={true} style={{height: '70vh'}} />*/}
           <video src={'jenga.mp4'} loop={true} autoPlay={true} style={{ height: '70vh' }} />
           {/*<Image src={'domino.gif'} loop={true} autoPlay={true} style={{height: '70vh'}} />*/}
+          <Notes>
+            Really sad what happened to this kid, but it would be even worse if something like this would happen to you when fixing yet another test
+          </Notes>
         </MySlide>
         <MySlide transition={['slide']} bgColor="primary">
           <Image src={'tweet.png'} />
@@ -437,7 +441,16 @@ export default class Presentation extends React.Component {
           </MyHeading>
           <Appear><Text textColor="quaternary" textAlign="left">Confidence</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="left">Code Coverage</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="left">Design Tool - Test as a user of an application</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="left">Design Tool - Test as a user of an
+            application</Text></Appear>
+          <Notes>
+            TDD let’s you write your tests from perspective of a user. If you follow that rule, you wouldn’t be testing
+            implementation details. You can’t because you don’t know them, as they are not written yet.
+            <br />
+            <br />
+            Users of your application don’t know anything, or they don’t care what’s your implementation, only if the
+            application is working. The same is true with tests
+          </Notes>
         </MySlide>
 
         <MySlide transition={['slide']} bgColor="primary">
@@ -462,27 +475,36 @@ export default class Presentation extends React.Component {
           <Heading size={3} textColor="tertiary" caps>
             Test from a perspective of a user
           </Heading>
+          <Notes>
+            <div>Thinking of yourself as a user of application is the best way to create better tests.</div>
+            <br />
+            <div>As close the test reflects how user uses application - the better</div>
+          </Notes>
         </MySlide>
         <MySlide transition={['slide']} bgColor="primary">
           <CodePane lang={'javascript'} source={integrationCode} />
+          <Notes>
+            I don’t care if it’s done in internal state, redux, on server or what functions are called.
+            By testing our application from a user’s perspective, you don’t test implementation details.
+          </Notes>
         </MySlide>
         {/*<MySlide transition={['slide']} bgColor="primary">*/}
         {/*<CodePane lang={'javascript'} source={nonIntegrationCode} />*/}
         {/*</MySlide>*/}
 
         {/*<MySlide transition={['slide']} bgColor="primary">*/}
-          {/*<MyHeading size={3} textColor="tertiary" caps>*/}
-            {/*Not only integration*/}
-          {/*</MyHeading>*/}
-          {/*<Appear><Text textColor="quaternary" textAlign="center">Most of tests - integrations</Text></Appear>*/}
-          {/*<Appear><Text textColor="quaternary" textAlign="center">Unit tests still present - e.g. corner*/}
-            {/*cases</Text></Appear>*/}
-          {/*<Appear><Text textColor="quaternary" textAlign="center">Write high-level integration tests - go down with unit*/}
-            {/*tests to implement the feature</Text></Appear>*/}
+        {/*<MyHeading size={3} textColor="tertiary" caps>*/}
+        {/*Not only integration*/}
+        {/*</MyHeading>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="center">Most of tests - integrations</Text></Appear>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="center">Unit tests still present - e.g. corner*/}
+        {/*cases</Text></Appear>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="center">Write high-level integration tests - go down with unit*/}
+        {/*tests to implement the feature</Text></Appear>*/}
         {/*</MySlide>*/}
 
         {/*<MySlide transition={['slide']} bgColor="primary">*/}
-          {/*<video src={'integration.mp4'} autoPlay={true} loop={true} style={{ height: '70vh' }} />*/}
+        {/*<video src={'integration.mp4'} autoPlay={true} loop={true} style={{ height: '70vh' }} />*/}
         {/*</MySlide>*/}
 
         {/*<MySlide transition={['slide']} bgColor="primary">*/}
@@ -553,8 +575,17 @@ export default class Presentation extends React.Component {
             Our test currently
           </Heading>
           <Appear>
-            <div className={'displayFlex fullWidth'}><CodePane lang={'javascript'} source={currentCode} /></div>
+            <div className={'displayFlex fullWidth'}><CodePane className={'smallerCode'} lang={'javascript'}
+                                                               source={currentCode} /></div>
           </Appear>
+          <Notes>
+            Just by looking at this code you probably cannot say if it’s written in React, Angular or any other
+            framework. What you can say, at least I hope, is that this test clearly says what it’s about.
+            <br />
+            <br />
+            Are we using any component for list or search input? How do we filter data? Are we using Redux or internal
+            state? Those, and many more things are not that important at this level.
+          </Notes>
         </MySlide>
         <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
@@ -566,9 +597,17 @@ export default class Presentation extends React.Component {
           <MyHeading size={3} textColor="tertiary" caps>
             Mistake no. 1 - Shallow rendering from Enzyme
           </MyHeading>
+          <Notes>
+            I am writing my tests using Enzyme, and it is great library. However, it has few features that can encourage
+            bad testing practices.
+            You are not testing functionality, but rather that we provided prop x or called funstion y - not something
+            that user would observe.
+          </Notes>
 
-          <Appear><Text textColor="quaternary" textAlign="center">Ways to render a component - shallow, full or static</Text></Appear>
-          <Appear><Text textColor="quaternary" textAlign="center">Shallow does not render nested components</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Ways to render a component - shallow, full or
+            static</Text></Appear>
+          <Appear><Text textColor="quaternary" textAlign="center">Shallow does not render nested
+            components</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="center">Testing implementation details!</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="center">Hard to refactor</Text></Appear>
         </MySlide>
@@ -576,21 +615,21 @@ export default class Presentation extends React.Component {
           <CodePane lang={'javascript'} source={shallowFirstCode} />
         </MySlide>
         <MySlide transition={['slide']} bgColor="primary">
-          <CodePane lang={'javascript'} className={'smallerCode'}  source={shallowWrongCode} />
+          <CodePane lang={'javascript'} className={'smallerCode'} source={shallowWrongCode} />
         </MySlide>
         {/*<MySlide transition={['slide']} bgColor="primary">*/}
-          {/*<MyHeading size={3} textColor="tertiary" caps>*/}
-            {/*<Code textSize={'1em'} textColor="tertiary">.shallow()</Code> to the rescue?*/}
-          {/*</MyHeading>*/}
+        {/*<MyHeading size={3} textColor="tertiary" caps>*/}
+        {/*<Code textSize={'1em'} textColor="tertiary">.shallow()</Code> to the rescue?*/}
+        {/*</MyHeading>*/}
 
-          {/*<Appear>*/}
-            {/*<div className={'displayFlex fullWidth'}><CodePane lang={'javascript'}*/}
-                           {/*source={'component.shallow().shallow().shallow().shallow().shallow().shallow();'} />*/}
-            {/*</div>*/}
-          {/*</Appear>*/}
-          {/*<Appear>*/}
-            {/*<div className={'displayFlex fullWidth'}><CodePane lang={'javascript'} source={'shallowUpTo(Component);'} /></div>*/}
-          {/*</Appear>*/}
+        {/*<Appear>*/}
+        {/*<div className={'displayFlex fullWidth'}><CodePane lang={'javascript'}*/}
+        {/*source={'component.shallow().shallow().shallow().shallow().shallow().shallow();'} />*/}
+        {/*</div>*/}
+        {/*</Appear>*/}
+        {/*<Appear>*/}
+        {/*<div className={'displayFlex fullWidth'}><CodePane lang={'javascript'} source={'shallowUpTo(Component);'} /></div>*/}
+        {/*</Appear>*/}
         {/*</MySlide>*/}
         <MySlide transition={['slide']} bgColor="primary">
           <Heading size={3} textColor="tertiary" caps>
@@ -603,25 +642,32 @@ export default class Presentation extends React.Component {
             Mistake no. 2 - ways of querying elements
           </MyHeading>
 
+          <Notes>
+            how user finds elements, and do the same in tests
+            <br />
+            <br />
+            Not testing from user perspective
+          </Notes>
           <Appear>
             <div><CodePane lang={'javascript'} source={componentNameFindCode} /></div>
           </Appear>
           <Appear><Text textColor="quaternary" textAlign="center">Implementation detail!</Text></Appear>
           <Appear>
-            <div><Text textColor="quaternary" textAlign="center">Use real texts to find elements, or at least some custom attribute (like data-test)</Text></div>
+            <div><Text textColor="quaternary" textAlign="center">Use real texts to find elements, or at least some
+              custom attribute (like data-test)</Text></div>
           </Appear>
         </MySlide>
 
         {/*<MySlide transition={['slide']} bgColor="primary">*/}
-          {/*<MyHeading size={3} textColor="tertiary" caps>*/}
-            {/*Mistake no. 3 - Accessing internal state*/}
-          {/*</MyHeading>*/}
+        {/*<MyHeading size={3} textColor="tertiary" caps>*/}
+        {/*Mistake no. 3 - Accessing internal state*/}
+        {/*</MyHeading>*/}
 
-          {/*<Appear>*/}
-            {/*<div><CodePane lang={'javascript'} source={implementationDetailsCode} /></div>*/}
-          {/*</Appear>*/}
-          {/*<Appear><Text textColor="quaternary" textAlign="left">What if we change name or remove a*/}
-            {/*state?</Text></Appear>*/}
+        {/*<Appear>*/}
+        {/*<div><CodePane lang={'javascript'} source={implementationDetailsCode} /></div>*/}
+        {/*</Appear>*/}
+        {/*<Appear><Text textColor="quaternary" textAlign="left">What if we change name or remove a*/}
+        {/*state?</Text></Appear>*/}
         {/*</MySlide>*/}
 
         <MySlide transition={['slide']} bgColor="primary">
@@ -634,11 +680,14 @@ export default class Presentation extends React.Component {
           <Appear><Text textColor="quaternary" textAlign="center">Better to test it all at once!</Text></Appear>
           <Appear><Text textColor="quaternary" textAlign="center">Also applicable to Router, I18N or
             other contexts</Text></Appear>
+          <Notes>
+            Not testing from user perspective
+          </Notes>
         </MySlide>
 
-        <MySlide transition={['slide']} bgColor="primary">
-          <CodePane lang={'javascript'} source={reduxIntegrationCode} />
-        </MySlide>
+        {/*<MySlide transition={['slide']} bgColor="primary">*/}
+        {/*<CodePane lang={'javascript'} source={reduxIntegrationCode} />*/}
+        {/*</MySlide>*/}
 
         <MySlide transition={['slide']} bgColor="primary">
           <MyHeading size={3} textColor="secondary" caps>
@@ -653,10 +702,16 @@ export default class Presentation extends React.Component {
           <CodePane lang={'javascript'} source={currentWithoutWrappersCode} />
         </MySlide>
         {/*<MySlide transition={['slide']} bgColor="primary">*/}
-          {/*<CodePane lang={'javascript'} className={'smallerCode'} source={currentWithoutWrappersExtractedFunctionsCode} />*/}
+        {/*<CodePane lang={'javascript'} className={'smallerCode'} source={currentWithoutWrappersExtractedFunctionsCode} />*/}
         {/*</MySlide>*/}
         <MySlide transition={['slide']} bgColor="primary">
           <CodePane className={'smallerCode'} lang={'javascript'} source={currentDetailsCode} />
+          <Notes>
+            There is no magic, just plain JS functions and objects, that let you define your own DSL
+            <br />
+            <br />
+            methods to reduce the boilerplate
+          </Notes>
         </MySlide>
         <MySlide transition={['slide']} bgColor="primary">
           <MyHeading size={3} textColor="secondary" caps>
@@ -676,7 +731,8 @@ export default class Presentation extends React.Component {
                 textColor="tertiary">https://github.com/kentcdodds/react-testing-library</Link>
 
           <Appear>
-            <div className={'testing-library-code'}><CodePane lang={'javascript'} className={'smallerCode'} source={reactTestingLibraryCode} /></div>
+            <div className={'testing-library-code'}><CodePane lang={'javascript'} className={'smallerCode'}
+                                                              source={reactTestingLibraryCode} /></div>
           </Appear>
         </MySlide>
 
@@ -702,9 +758,9 @@ export default class Presentation extends React.Component {
           </Appear>
         </MySlide>
         {/*<MySlide transition={['slide']} bgColor="primary">*/}
-          {/*<Heading size={3} textColor="tertiary" caps>*/}
-            {/*Vue*/}
-          {/*</Heading>*/}
+        {/*<Heading size={3} textColor="tertiary" caps>*/}
+        {/*Vue*/}
+        {/*</Heading>*/}
         {/*</MySlide>*/}
         <MySlide transition={['slide']} bgColor="primary">
           <MyHeading size={3} textColor="secondary" caps>
